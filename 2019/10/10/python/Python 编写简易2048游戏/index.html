@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next-myself.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-myself.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next-myself.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="这是一个很简陋的2048游戏设计">
+<meta name="keywords" content="Java、Python、武侠玄幻、音乐、运动、生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 编写简易2048游戏">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/python/Python 编写简易2048游戏/index.html">
+<meta property="og:site_name" content="xYx">
+<meta property="og:description" content="这是一个很简陋的2048游戏设计">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-09T12:41:46.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 编写简易2048游戏">
+<meta name="twitter:description" content="这是一个很简陋的2048游戏设计">
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/python/Python 编写简易2048游戏/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python 编写简易2048游戏 | xYx</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xYx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">依然自我</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/python/Python 编写简易2048游戏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xyx">
+      <meta itemprop="description" content="做我想做，写我想写">
+      <meta itemprop="image" content="/images/apple-touch-icon-next-myself.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xYx">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Python 编写简易2048游戏
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-10 13:38:01" itemprop="dateCreated datePublished" datetime="2019-10-10T13:38:01+08:00">2019-10-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-09 20:41:46" itemprop="dateModified" datetime="2019-10-09T20:41:46+08:00">2019-10-09</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这是一个很简陋的2048游戏设计<a id="more"></a>，先看下在 PyCharm 控制台输出的效果先：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">请输入2048游戏界面的大小：3</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[0, 2, 0]</span><br><span class="line">(w/W)上，(s/S)下，(a/A)左，(d/D)右，(r/R)重置游戏大小，(q/Q)退出：a</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[2, 0, 4]</span><br><span class="line">(w/W)上，(s/S)下，(a/A)左，(d/D)右，(r/R)重置游戏大小，(q/Q)退出：d</span><br><span class="line">[2, 0, 0]</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[0, 2, 4]</span><br><span class="line">(w/W)上，(s/S)下，(a/A)左，(d/D)右，(r/R)重置游戏大小，(q/Q)退出：s</span><br><span class="line">[2, 0, 0]</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[2, 2, 4]</span><br><span class="line">(w/W)上，(s/S)下，(a/A)左，(d/D)右，(r/R)重置游戏大小，(q/Q)退出：d</span><br><span class="line">[0, 0, 2]</span><br><span class="line">[0, 0, 0]</span><br><span class="line">[2, 0, 8]</span><br><span class="line">(w/W)上，(s/S)下，(a/A)左，(d/D)右，(r/R)重置游戏大小，(q/Q)退出：q</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<p>其中类似 [0, 2, 2, 2] 这样的数组，“向右滑动”后为  [0, 0, 4, 2]，而不是  [0, 0, 2, 4]，没去查究竟哪种才是真正的结果，不过这两种的实现效果，代码思想都是一样，就这样吧</p>
+<p><strong>设计思路</strong>：</p>
+<p>2048 游戏界面可由一个二维数组来表示。当左右滑动的动作作用在整个二维数组上，可以采用化整为零的思想，把一个二维数组按情况分解为一列列的一维数组或者一行行的一维数组，进而遍历这些一维数组，实现一维数组上的左右滑动，从而实现二维数组的左右滑动操作。</p>
+<p><strong>代码实现解析</strong>：</p>
+<p>首先定义一个初始数组，表示游戏界面的范围大小</p>
+<ul>
+<li><code>[[0 for i in range(size)] for j in range(size)]</code>表示行列数都为 size ，值都为 0 的二维数组</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">area_array</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    生成 2048 游戏界面，界面的长宽为输入值的大小</span></span><br><span class="line"><span class="string">    :return: 全部值为0 的二维数组</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        size = input(<span class="string">'请输入2048游戏界面的大小：'</span>)</span><br><span class="line">        <span class="keyword">if</span> re.match(<span class="string">'^[2-9][0-9]*$|^[1-9][0-9]+$'</span>, size):</span><br><span class="line">            size = int(size)</span><br><span class="line">            area = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)] <span class="keyword">for</span> j <span class="keyword">in</span> range(size)]</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'输入有误！输入需满足大于等于2的数字\n'</span>)</span><br><span class="line">    <span class="keyword">return</span> area</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>然后，通过随机给一个值为 0 的数组元素赋值 2 或 4，来模拟在界面上空白处随机生成一个数</p>
+<ul>
+<li><p><code>random.choice([2, 4])</code>     返回参数列表中随机的一个元素</p>
+</li>
+<li><p><code>[(j, i) for i in range(len(n[0])) for j in range(len(n)) if n[j][i] == 0]</code>表示</p>
+<p>数组 n 中值为零的元素的位置元组所组成的列表</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next_station</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    随机选择在值为零的数组位置上，随机赋值 2 或 4</span></span><br><span class="line"><span class="string">    :param n: “滑动”操作后的界面二维数组</span></span><br><span class="line"><span class="string">    :return:  随机赋值后的二维数组</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    values = random.choice([<span class="number">2</span>, <span class="number">4</span>])      </span><br><span class="line">    temp = [(j, i) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(n[<span class="number">0</span>])) <span class="keyword">for</span> j <span class="keyword">in</span> range(len(n)) <span class="keyword">if</span> n[j][i] == <span class="number">0</span>]</span><br><span class="line">    temp_index = random.choice(temp)</span><br><span class="line">    n[temp_index[<span class="number">0</span>]][temp_index[<span class="number">1</span>]] = values</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>这里先搞定 “滑动” 一维数组是怎样实现的，比如， [2, 0, 2, 8] 向左 “滑动” 后变为 [4, 8, 0, 0] 。之后把二维数组按照上下左右滑动的不同情况来对应分解成几个一维数组，遍历它们即可完成整个二维数组的 “滑动”</p>
+<hr>
+<p>先编写子函数来判断任意一个一维数组是否还可以“滑动”</p>
+<ul>
+<li><code>for i in range(len([])):print(&#39;Ok&#39;)</code> 这句语句不会输出内容，即不会进入该循环中</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_next_equals</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    判断一维数组是否还可以“滑动”</span></span><br><span class="line"><span class="string">    :param n: 一维数组</span></span><br><span class="line"><span class="string">    :return: bool</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    length = len(n)</span><br><span class="line">    n = [i <span class="keyword">for</span> i <span class="keyword">in</span> n <span class="keyword">if</span> i !=<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(n)):</span><br><span class="line">        <span class="keyword">if</span> len(n) &gt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">if</span> i+<span class="number">1</span> &lt;= len(n) <span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">if</span> n[i] == n[i+<span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:            </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>接下来，模拟一维数组的 “滑动”，注意，这里的滑动可能只完成部分，例如：[2, 2, 2, 2] –&gt; [4, 4, 0, 0] 。所以 “滑动” 后还需判断是否还可以 “滑动”，若可以则继续执行该函数，直至不可以继续 “滑动”。</p>
+<ul>
+<li>下面代码第13行处的 if 语句需注意，很容易遗漏，并且遗漏了程序运行也不会有异常抛出，因为当 num 为 0 时，n[num-1] 为 n[-1] ，表示列表的最后一个元素</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">move</span><span class="params">(n)</span>:</span>       </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    在一维数组上模拟从右到左的“滑动”</span></span><br><span class="line"><span class="string">    :param n: 一维数组, eg: [0, 2, 2, 2]</span></span><br><span class="line"><span class="string">    :return: “滑动”后的一维数组 [2, 4, 0, 0]</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> len([i <span class="keyword">for</span> i <span class="keyword">in</span> n <span class="keyword">if</span> i != <span class="number">0</span>]) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> [i <span class="keyword">for</span> i <span class="keyword">in</span> n <span class="keyword">if</span> i != <span class="number">0</span>] + [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(n) - <span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">if</span> len([i <span class="keyword">for</span> i <span class="keyword">in</span> n <span class="keyword">if</span> i != <span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(n))]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> range(len(n)).__reversed__():  </span><br><span class="line">        <span class="keyword">if</span> num<span class="number">-1</span> &gt;=<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> n[num<span class="number">-1</span>] != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> n[num<span class="number">-1</span>] == n[num]:</span><br><span class="line">                    n[num<span class="number">-1</span>] = n[num<span class="number">-1</span>] + n[num<span class="number">-1</span>]</span><br><span class="line">                    <span class="keyword">if</span> num+<span class="number">1</span> &lt;= len(n)<span class="number">-1</span>:</span><br><span class="line">                        n[num:] = n[num+<span class="number">1</span>:] + [<span class="number">0</span>]</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        n[num] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> n[num<span class="number">-1</span>] == <span class="number">0</span> <span class="keyword">and</span> num+<span class="number">1</span> &lt;= len(n)<span class="number">-1</span>:</span><br><span class="line">                n[num<span class="number">-1</span>] = n[num]</span><br><span class="line">                n[num:] = n[num+<span class="number">1</span>:] + [<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                n[num<span class="number">-1</span>], n[num] = n[num], <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> n</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>这时到了模拟滑动的动作，分上下左右四种滑动方式。首先实现向上滑动</p>
+<ul>
+<li><p><code>[[n[i][j] for i in range(len(n))] for j in range(len(n[0]))]</code>的作用是实现数组的转换：</p>
+<p>eg:   [ [1, 2, 3], [4, 5, 6] ]  ——&gt;  [ [1,  4],  [2,  5],  [3,  6] ]</p>
+</li>
+<li><p><code>[[target_list[i][j] for i in range(len(target_list))] for j in range(len(target_list[0]))]</code>的作用是实现数组的转换：</p>
+<p> eg:   [ [1,  4],  [2,  5],  [3,  6] ]  ——&gt;  [ [1, 2, 3], [4, 5, 6] ]</p>
+</li>
+<li><p>下面代码段第13行不能 i = i.reverse() ！！</p>
+</li>
+<li><p>必须先执行一次<code>i = move(i)</code>，然后再在<code>while is_next_equals(i):</code>循环里执行便可，这里是为了处理</p>
+<p>只有一个非零值的那些一维数组，比如：[0,2,0]  、[0,0,4] 等等，这些在<code>is_next_equals(i)</code>里是返回<code>False</code>的</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">up</span><span class="params">(n, *, flag = False)</span>:</span> </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    可看成一维数组从右往左的“滑动”</span></span><br><span class="line"><span class="string">    :param n: 一维数组</span></span><br><span class="line"><span class="string">    :param flag: </span></span><br><span class="line"><span class="string">    :return: list</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    target_list = []</span><br><span class="line">    temp_list = [[n[i][j] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(n))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(n[<span class="number">0</span>]))]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> temp_list:</span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            i.reverse() </span><br><span class="line">        length = len(n)</span><br><span class="line">        i = move(i)</span><br><span class="line">        <span class="keyword">while</span> is_next_equals(i):</span><br><span class="line">            i = move(i)</span><br><span class="line">        i = i + [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length - len(i))]</span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            i.reverse()</span><br><span class="line">        target_list.append(i)</span><br><span class="line">    target_list = [[target_list[i][j] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(target_list))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(target_list[<span class="number">0</span>]))]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> target_list</span><br></pre></td></tr></table></figure>
+
+<p>向下滑动如下</p>
+<ul>
+<li>把数组上下倒置过来，便跟向上滑动的操作一模一样了，操作完后再把数组还原过来便行了</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">down</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> up(n, flag=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>同理向左向右的滑动实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right</span><span class="params">(n, *, flag=True)</span>:</span></span><br><span class="line">    target_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> n:</span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            i.reverse()</span><br><span class="line">        length = len(n)</span><br><span class="line">        i = move(i)</span><br><span class="line">        <span class="keyword">while</span> is_next_equals(i):</span><br><span class="line">            i = move(i)</span><br><span class="line">        i = i + [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length - len(i))]</span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            i.reverse()</span><br><span class="line">        target_list.append(i)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> target_list</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">left</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> right(n, flag=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>判断游戏结束的代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_end</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> [n[i][j] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(n)) <span class="keyword">for</span> j <span class="keyword">in</span> range(len(n)) <span class="keyword">if</span> n[i][j] == <span class="number">0</span>] == []:</span><br><span class="line">        print()</span><br><span class="line">        print(<span class="string">"the end!"</span>)</span><br><span class="line">        temp = input(<span class="string">'(r/R)重新开始游戏，(q/Q/其它)退出：'</span>)</span><br><span class="line">        <span class="keyword">if</span> temp == <span class="string">'r'</span> <span class="keyword">or</span> temp == <span class="string">'R'</span>:</span><br><span class="line">            main()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            exit()</span><br></pre></td></tr></table></figure>
+
+<p>整合上下左右滑动的操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">action</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    上下左右移动操作</span></span><br><span class="line"><span class="string">    :param n: 二维数组</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        flag = input(<span class="string">'(w/W)上，(s/S)下，(a/A)左，(d/D)右，(r/R)重置游戏大小，(q/Q)退出：'</span>)</span><br><span class="line">        <span class="keyword">if</span> flag == <span class="string">'w'</span> <span class="keyword">or</span> flag == <span class="string">'W'</span>:       <span class="comment"># 上</span></span><br><span class="line">            n = up(n)</span><br><span class="line">            n = next_station(n)</span><br><span class="line">            print_area(n)</span><br><span class="line">            is_end(n)</span><br><span class="line">        <span class="keyword">elif</span> flag == <span class="string">'s'</span> <span class="keyword">or</span> flag == <span class="string">'S'</span>:     <span class="comment"># 下</span></span><br><span class="line">            n = down(n)</span><br><span class="line">            n = next_station(n)</span><br><span class="line">            print_area(n)</span><br><span class="line">            is_end(n)</span><br><span class="line">        <span class="keyword">elif</span> flag == <span class="string">'a'</span> <span class="keyword">or</span> flag == <span class="string">'A'</span>:     <span class="comment"># 左</span></span><br><span class="line">            n = left(n)</span><br><span class="line">            n = next_station(n)</span><br><span class="line">            print_area(n)</span><br><span class="line">            is_end(n)</span><br><span class="line">        <span class="keyword">elif</span> flag == <span class="string">'d'</span> <span class="keyword">or</span> flag == <span class="string">'D'</span>:     <span class="comment"># 右</span></span><br><span class="line">            n = right(n)</span><br><span class="line">            n = next_station(n)</span><br><span class="line">            print_area(n)</span><br><span class="line">            is_end(n)</span><br><span class="line">        <span class="keyword">elif</span> flag == <span class="string">'r'</span> <span class="keyword">or</span> flag == <span class="string">'R'</span>:     <span class="comment"># 重置游戏大小</span></span><br><span class="line">            main()</span><br><span class="line">        <span class="keyword">elif</span> flag == <span class="string">'q'</span> <span class="keyword">or</span> flag == <span class="string">'Q'</span>:     <span class="comment"># 退出</span></span><br><span class="line">            exit()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'请输入正确的命令'</span>)</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>输出数组函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_area</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> n:</span><br><span class="line">        print(row)</span><br></pre></td></tr></table></figure>
+
+<p>最后程序入口处：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    init_area = area_array()</span><br><span class="line">    start_area = next_station(init_area)</span><br><span class="line">    <span class="keyword">for</span> values <span class="keyword">in</span> start_area:</span><br><span class="line">        print(values)</span><br><span class="line">    action(start_area)</span><br></pre></td></tr></table></figure>
+
+<p>最后的最后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>大功告成。</p>
+<hr>
+<p>改进之处：</p>
+<ol>
+<li><p>在控制台上，每执行一个操作后就接着上一个输出结果来输出新的界面结果，不够美观</p>
+</li>
+<li><p>判断任意一个一维数组是否还可以“滑动”的函数和模拟一维数组 “滑动”的函数应该可以</p>
+<p>用一个函数实现，并且减少一些循环次数</p>
+</li>
+<li><p>for循环输出数组时，当数字越来越大时，加上格式输出会更好点</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/10/others/尔雅视频后台播放/" rel="next" title="超星尔雅视频如何后台播放">
+                  <i class="fa fa-chevron-left"></i> 超星尔雅视频如何后台播放
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/10/Windows-operation/Windows 自带计算器的使用/" rel="prev" title="Windows 自带计算器的使用">
+                  Windows 自带计算器的使用 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/apple-touch-icon-next-myself.png"
+      alt="xyx">
+  <p class="site-author-name" itemprop="name">xyx</p>
+  <div class="site-description" itemprop="description">做我想做，写我想写</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xyx</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.1</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
