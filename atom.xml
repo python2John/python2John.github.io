@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-10T08:40:07.569Z</updated>
+  <updated>2019-10-10T11:24:12.118Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2019/10/10/Windows-operation/Windows%20%E8%87%AA%E5%B8%A6%E8%AE%A1%E7%AE%97%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2019/10/10/Windows-operation/Windows 自带计算器的使用/</id>
     <published>2019-10-10T05:38:01.736Z</published>
-    <updated>2019-10-10T08:40:07.569Z</updated>
+    <updated>2019-10-10T11:24:12.118Z</updated>
     
     <content type="html"><![CDATA[<p>​    <a id="more"></a></p><p>计算器的使用，还值得写一些吗。。</p><p>首先，需要打开计算器先，<code>Win + R</code>打开运行窗口，输入<code>calc</code>后回车便可打开计算器</p><hr><ul><li>计算器有<strong>复制粘贴</strong>的功能，不过复制的算式不能有中文括号，否则会提示<u>无效输入</u>。但是数字或空格无论是在英文输入状态下还是中文输入状态下都是可以的，同时空格也允许有多个</li></ul><p><img src="https://user-images.githubusercontent.com/43738074/66468583-fd88e500-eab8-11e9-82ec-dc04f79ce9b8.png" alt="计算器说明"></p><ul><li>当计算器放大到一定程度或最大化时，历史记录不用点击都会自动出现 </li><li>标准型的计算器，是按照从左到右的方式计算的</li><li>科学型的计算器是按照运算符优先级来计算的</li></ul><p><img src="https://user-images.githubusercontent.com/43738074/66468582-fcf04e80-eab8-11e9-88ff-510520b3fe00.PNG" alt="计算器历史记录"></p><ul><li>程序员型计算器，如下：</li></ul><p><img src="https://user-images.githubusercontent.com/43738074/66468584-fd88e500-eab8-11e9-824a-787cc8096175.PNG" alt="计算器程序员"></p><p>可见：</p><ol><li>输入键盘有两种方式：全键盘（左）和比特绷板键盘（右），不过这里的话，还是复制粘贴好用点</li><li>这里的二进制数，都是<strong>有符号</strong>的</li><li><strong>BYTE ，WORD，DWORD，QWORD</strong> 分别表示二进制数占用的位数为 8、16、32、64位</li></ol><p><span style="color:red">注意相同的输入，比如11010110 10000111，在WORD和DWORD下运算是不同的！因为如果是DWORD，则是00000000 00000000 11010110 10000111，即是正数，而WORD下为负数</span></p><p>因此计算二进制的时候一定要选择好范围。</p>]]></content>
     
