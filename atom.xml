@@ -48,9 +48,9 @@
     <link href="http://yoursite.com/2019/10/20/menu/"/>
     <id>http://yoursite.com/2019/10/20/menu/</id>
     <published>2019-10-20T04:41:52.160Z</published>
-    <updated>2019-10-20T04:56:52.823Z</updated>
+    <updated>2019-10-20T05:03:59.935Z</updated>
     
-    <content type="html"><![CDATA[<p><button id="test" onclick="jump()">点击我</button></p><script>function jump(){ window.location.href="table.html";}</script>]]></content>
+    <content type="html"><![CDATA[<p><button id="test" onclick="jump()">点击我</button></p><script>function jump(){ window.location.href="../table/index.html";}</script>]]></content>
     
     <summary type="html">
     
@@ -59,11 +59,9 @@
         &lt;p&gt;&lt;button id=&quot;test&quot; onclick=&quot;jump()&quot;&gt;点击我&lt;/button&gt;&lt;/p&gt;
 &lt;script&gt;
 function jump(){
- window.location.href=&quot;table.html&quot;;
+ window.location.href=&quot;../table/index.html&quot;;
 }
 &lt;/script&gt;
-
-
       
     
     </summary>
