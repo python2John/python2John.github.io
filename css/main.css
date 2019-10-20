@@ -1202,7 +1202,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff3361;
+  background: #737a79;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1518,7 +1518,9 @@ pre .javascript .function {
 }
 .back-to-top {
   background: #222;
-  bottom: -100px;
+/*
+  bottom: $b2t-position-bottom;
+*/
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -1534,12 +1536,14 @@ pre .javascript .function {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   width: initial;
+/*
+  &.back-to-top-on {
+    bottom: $b2t-position-bottom-on;
+  }
+*/
 }
 .back-to-top:hover {
   color: #fc6423;
-}
-.back-to-top.back-to-top-on {
-  bottom: 30px;
 }
 @media (max-width: 991px) {
   .back-to-top {
@@ -2548,4 +2552,56 @@ ul.breadcrumb li + li:last-child {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.back-to-top {
+  background: #222;
+  top: 30px;
+}
+.sidebar_wo {
+  position: fixed;
+  line-height: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+#leimu {
+  left: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: translate(-7px, 7px);
+  -ms-transform: translate(-7px, 7px);
+  -webkit-transform: translate(-7px, 7px);
+  -moz-transform: translate(-7px, 7px);
+  -ms-transform: translate(-7px, 7px);
+  -o-transform: translate(-7px, 7px);
+  transform: translate(-7px, 7px);
+}
+#lamu {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: translate(7px, 7px);
+  -ms-transform: translate(7px, 7px);
+  -webkit-transform: translate(7px, 7px);
+  -moz-transform: translate(7px, 7px);
+  -ms-transform: translate(7px, 7px);
+  -o-transform: translate(7px, 7px);
+  transform: translate(7px, 7px);
+  right: 0;
+}
+#leimu:hover {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#lamu:hover {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
 }
